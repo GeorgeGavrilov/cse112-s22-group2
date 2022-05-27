@@ -39,7 +39,7 @@ class GradientPreview extends HTMLElement {
         journalContainer.setAttribute('class', 'icon-item');
         trackerIcon.setAttribute('src', './icons/sq-tracker-icon.png');
         notesIcon.setAttribute('src', './icons/sq-notes-icon.png');
-        journalIcon.setAttribute('src', './icons/sq-journal-icon.png');      
+        journalIcon.setAttribute('src', './icons/sq-journal-icon.png');
 
         title.textContent = 'DAILY LOG 05/26/2022';
         preview.textContent = 'Information on how much the trip would cost would be helpful';
@@ -66,14 +66,15 @@ class GradientPreview extends HTMLElement {
         journalContainer.appendChild(journalIcon);
 
         window.addEventListener('DOMContentLoaded', () => {
-            console.log('content width: ' + content.offsetWidth);
-            console.log('content height: ' + content.offsetHeight);
-            console.log('content top: ' + content.offsetTop);
+            console.log(`content width: ${content.offsetWidth}`);
+            console.log(`content height: ${content.offsetHeight}`);
+            console.log(`content top: ${content.offsetTop}`);
             background.style.width = content.offsetWidth + 'px';
             background.style.height = content.offsetHeight + 'px';
             background.style.top = content.offsetTop + 'px';
-            console.log('background width: ' + background.offsetWidth);
-            console.log('background height: ' + background.offsetHeight);
+            console.log(`background width: ${background.offsetWidth}`);
+            console.log(`background height: ${background.offsetHeight}`);
+            console.log(`background top: ${background.offsetTop}`);
         });
     }
 }

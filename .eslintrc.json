@@ -24,6 +24,7 @@
             "properties": "always",
             "ignoreImports": true 
         }],                                                             // Ensure using camelcases for variables and methods
+        "prefer-template": 1,
         "new-cap": ["error", {"newIsCap": true}],                       // Ensure all new operators to be called with uppercase-started function
         "no-plusplus": 0,
         "no-console": 0,
