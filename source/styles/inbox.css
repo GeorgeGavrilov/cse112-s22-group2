@@ -145,6 +145,7 @@ p {
 footer {
     width: 100%;
     bottom: 0;
+    left: 0;
     background-color: var(--header-footer-background);
     display: flex;
     align-items: center;
@@ -211,6 +212,23 @@ footer {
 }
 
 /* ====== FOOTER DONE ====== */
+
+/* ====== GENERAL BODY ===== */
+
+body {
+    /* make body flush with screen */
+    left: 0;
+    top: 0;
+
+    /* for browsers that don't support gradient, use solid color */
+    background-color: #082b3b;
+    background-image: linear-gradient(0deg, #0a1a44, #063a31);
+
+    /* have body fill out whole mobile screen (helps gradient) */
+    min-height: 100vh;
+}
+
+/* ====== GENERAL BODY DONE ===== */
 
 :root {
     --footer-height: 80px;
