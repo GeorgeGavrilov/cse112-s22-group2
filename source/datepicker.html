@@ -10,12 +10,24 @@
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
   <script>
   $( function() {
-    $( "#datepicker" ).datepicker();
+    $("#datepicker" ).datepicker();
     $("#search").click(function() {
       var date = $("#datepicker").datepicker("getDate");
-      var dateFormated = $("#datepicker").val()
-      var searchResult = localStorage.getItem(dateFormated)
-      console.log(searchResult)
+     
+      const weekday = date.getDay()+1;
+      console.log(weekday)
+      const year = date.getFullYear();
+      console.log(year)
+      const month = date.getMonth();
+      console.log(month)
+      const day = date.getDate()+1;
+      console.log(day)
+      const event = new Date(Date.UTC(year,month,day,weekday,0,0))
+      const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
+      const dateFormated = event.toLocaleDateString(undefined, options)
+      //console.log(dateFormated);
+      const searchResult = localStorage.getItem(dateFormated)
+      //console.log(searchResult) 
     })
   });
   </script>
