@@ -181,29 +181,48 @@ class DailyLog extends HTMLElement {
             shadow.dispatchEvent(saveLogEvent);
         };
 
-        dateBtn.onclick = () => {
+       
+
+        // let temp;
+        // window.onload = function(){
+        //     temp = document.getElementById("date-button").textContent;
+        //     console.log("1111")
+        //     console.log(temp)
+        // }
+        //dateBtn.onclick = () => {
 
              //dateBtn.datepicker();
               //const date = $("#date-button").datepicker("getDate");
+             
               
-              const dateTxt = dateBtn.textContent
-              const date = new Date(dateTxt);
+              
+        $(document).ready(function(){
+            //$('#date-button').click(function(){
+            dateBtn.onclick = () =>{
+                $("#date-button").datepicker();
+                const dateTxt = dateBtn.textContent
+                const date = new Date(dateTxt);
+                 
+                const weekday = date.getDay();
+                console.log(weekday);
+                const year = date.getFullYear();
+                console.log(year);
+                const month = date.getMonth()+1;
+                console.log(month);
+                const day = date.getDate();
+                console.log(day);
+                const event = new Date(Date.UTC(year,month,day,weekday,0,0));
+                const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+                const dateFormated = event.toLocaleDateString(undefined, options);
+                //console.log(dateFormated);
+                const searchResult = localStorage.getItem(dateFormated);
+                //console.log(searchResult) 
+            }
+        })
+        
+              
            
-             const weekday = date.getDay();
-              console.log(weekday);
-              const year = date.getFullYear();
-              console.log(year);
-              const month = date.getMonth()+1;
-              console.log(month);
-              const day = date.getDate();
-              console.log(day);
-              const event = new Date(Date.UTC(year,month,day,weekday,0,0));
-              const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
-              const dateFormated = event.toLocaleDateString(undefined, options);
-              //console.log(dateFormated);
-              const searchResult = localStorage.getItem(dateFormated);
-              //console.log(searchResult) 
-        }
+        
 
         /* call functions */
         this.defaultFields();
@@ -214,6 +233,7 @@ class DailyLog extends HTMLElement {
 }
 
 customElements.define('daily-log', DailyLog);
+
 
 // let date_button = document.querySelector("date-button");
 // date_button.addEventListener('click', showCalendar);
