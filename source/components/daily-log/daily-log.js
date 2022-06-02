@@ -199,7 +199,10 @@ class DailyLog extends HTMLElement {
         $(document).ready(function(){
             //$('#date-button').click(function(){
             dateBtn.onclick = () =>{
-                $("#date-button").datepicker();
+               // $("#date-button").datepicker();
+                
+                const temp = dateBtn.getAttribute();
+                console.log(temp)
                 const dateTxt = dateBtn.textContent
                 const date = new Date(dateTxt);
                  
