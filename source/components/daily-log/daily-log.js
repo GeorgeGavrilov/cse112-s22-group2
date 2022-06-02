@@ -182,17 +182,20 @@ class DailyLog extends HTMLElement {
         };
 
         dateBtn.onclick = () => {
-            $("#date-button" ).datepicker();
-              const date = $("#date-button").datepicker("getDate");
-              console.log(date);
-             
-              const weekday = date.getDay()+1;
+
+             //dateBtn.datepicker();
+              //const date = $("#date-button").datepicker("getDate");
+              
+              const dateTxt = dateBtn.textContent
+              const date = new Date(dateTxt);
+           
+             const weekday = date.getDay();
               console.log(weekday);
               const year = date.getFullYear();
               console.log(year);
-              const month = date.getMonth();
+              const month = date.getMonth()+1;
               console.log(month);
-              const day = date.getDate()+1;
+              const day = date.getDate();
               console.log(day);
               const event = new Date(Date.UTC(year,month,day,weekday,0,0));
               const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
