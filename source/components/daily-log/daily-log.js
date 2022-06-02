@@ -181,6 +181,27 @@ class DailyLog extends HTMLElement {
             shadow.dispatchEvent(saveLogEvent);
         };
 
+        dateBtn.onclick = () => {
+            $("#date-button" ).datepicker();
+              const date = $("#date-button").datepicker("getDate");
+              console.log(date);
+             
+              const weekday = date.getDay()+1;
+              console.log(weekday);
+              const year = date.getFullYear();
+              console.log(year);
+              const month = date.getMonth();
+              console.log(month);
+              const day = date.getDate()+1;
+              console.log(day);
+              const event = new Date(Date.UTC(year,month,day,weekday,0,0));
+              const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+              const dateFormated = event.toLocaleDateString(undefined, options);
+              //console.log(dateFormated);
+              const searchResult = localStorage.getItem(dateFormated);
+              //console.log(searchResult) 
+        }
+
         /* call functions */
         this.defaultFields();
         journalInput.oninput = function () {
@@ -190,5 +211,12 @@ class DailyLog extends HTMLElement {
 }
 
 customElements.define('daily-log', DailyLog);
+
+// let date_button = document.querySelector("date-button");
+// date_button.addEventListener('click', showCalendar);
+
+// function showCalendar(){
+//     console.log("calendar is here")
+// }
 
 export default DailyLog;
