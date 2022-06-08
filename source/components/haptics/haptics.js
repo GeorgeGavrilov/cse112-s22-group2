@@ -45,3 +45,8 @@ newLogBtn.addEventListener('click', () => {
     // If user clicks on the button to create a new log, we do a quick vibration for feedback
     doFeedbackVibrations();
 })
+
+document.addEventListener('saveLog', () => {
+    // If user saves a log, we do a quick vibration for feedback
+    doFeedbackVibrations();
+})
