@@ -5,6 +5,7 @@
 import DailyLogPreview from '../daily-log-preview/daily-log-preview.js';
 import DailyLog from '../daily-log/daily-log.js';
 import { convertPreviewDate, setDefaultDate } from './control-helpers.js';
+import { doFeedbackVibrations } from '../haptics/haptics.js';
 import { addLog, deleteLog, deleteAll,
     fetchAll, fetchLog, updateLog } from '../../backend/storage.js';
 
@@ -65,6 +66,7 @@ newLogBtn.addEventListener('click', () => {
     const today = convertPreviewDate(setDefaultDate());
     const todayLog = fetchLog(today);
 
+    doFeedbackVibrations(); // quick feedback vibration
     if (todayLog !== EXIT_FAILURE) { // we found a log
         openFullLog(today);
     } else { // no log for today
@@ -90,6 +92,7 @@ newLogBtn.addEventListener('click', () => {
 
 editBtn.addEventListener('activeEdit', () => {
     // if user clicks edit button, now in edit mode
+    doFeedbackVibrations(); // quick feedback vibration
     activeEditing = true;
     console.log('USER CLICKED EDIT');
 });
@@ -103,6 +106,7 @@ editBtn.addEventListener('deactiveEdit', () => {
 document.addEventListener('openLog', (event) => {
     // if user is editing, do NOT open the full daily log
     if (!activeEditing) {
+        doFeedbackVibrations(); // quick feedback vibration
         createNewLog = false; // log should say 'daily log'
         openFullLog(event.detail.date());
     }
