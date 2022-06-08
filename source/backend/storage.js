@@ -110,10 +110,12 @@ export function addLog(date, notes, journal) {
     }
 
     // Input validation for notes: check if contains only strings
-    for (let i = 0; i < notes.length; i++) {
-        if (typeof (notes[i]) !== 'string') {
-            console.error('Notes must contain only strings.');
-            return EXIT_FAILURE;
+    if (notes != null) {
+        for (let i = 0; i < notes.length; i++) {
+            if (typeof (notes[i]) !== 'string') {
+                console.error('Notes must contain only strings.');
+                return EXIT_FAILURE;
+            }
         }
     }
 
@@ -156,10 +158,12 @@ export function updateLog(date, notes, journal) {
     }
 
     // Input validation for notes: check if contains strings
-    for (let i = 0; i < notes.length; i++) {
-        if (typeof (notes[i]) !== 'string') {
-            console.log('Notes must contain only strings.');
-            return EXIT_FAILURE;
+    if (notes != null) {
+        for (let i = 0; i < notes.length; i++) {
+            if (typeof (notes[i]) !== 'string') {
+                console.log('Notes must contain only strings.');
+                return EXIT_FAILURE;
+            }
         }
     }
 
@@ -192,7 +196,7 @@ export function updateLog(date, notes, journal) {
  * Retrieves value stored at key that corresponds to date param
  * then parses and returns it
  * @param {String} date of preview
- * @returns JS object with {date, notes, journal}
+ * @returns JS object with date, notes, journal
  */
 export function fetchLog(date) {
     if (validateDate(date, true) === EXIT_FAILURE) {
@@ -212,7 +216,7 @@ export function fetchLog(date) {
 /**
  * Iterates through all values in local storage, parses,
  * adds to list, and returns
- * @returns list of JS objects with {date, notes, journal}
+ * @returns list of JS objects with date, notes, journal
  */
 export function fetchAll() {
     const searchResult = [];
