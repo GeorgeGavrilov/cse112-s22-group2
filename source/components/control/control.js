@@ -74,15 +74,17 @@ newLogBtn.addEventListener('click', () => {
         main.appendChild(dailyLog);
 
         dailyLog.addEventListener('cancelLog', () => {
+            console.log('CANCEL');
             main.removeChild(dailyLog); // remove full log
             // editBtn.disabled = false; // allow edit
             populateInbox(); // add previews back
         });
 
         dailyLog.addEventListener('saveLog', () => {
+            console.log('SAVE');
             main.removeChild(dailyLog); // remove full log
             // editBtn.disabled = false; // allow edit
-            addLog(dailyLog.getDate(), [], dailyLog.getJournal());
+            addLog(dailyLog.getDate(), dailyLog.getNotes(), dailyLog.getJournal());
             populateInbox(); // add previews back
         });
     }
@@ -106,6 +108,16 @@ document.addEventListener('openLog', (event) => {
         createNewLog = false; // log should say 'daily log'
         openFullLog(event.detail.date());
     }
+});
+
+/**
+ * Give user status of system. When page fully loads (not just
+ * html) but also styles (aka using load vs DOMContentLoaded)
+ * then change status to 'updated'.
+ */
+window.addEventListener('load', () => {
+    const inboxStatus = document.getElementById('inbox-status');
+    inboxStatus.textContent = 'Updated Just Now';
 });
 
 /* Control functions on frontend */
@@ -139,7 +151,7 @@ function populateInbox() {
             convertPreviewDate(dailyLog.date), // convert to form {mm/dd/yyyy}
             dailyLog.journal,
             false,
-            false,
+            dailyLog.notes,
             dailyLog.journal.length > 0,
         );
     });
@@ -182,7 +194,7 @@ function createDailyLog(date) {
     dailyLog.populateFields(
         'Daily Log',
         logContent.date,
-        [],
+        logContent.notes,
         logContent.journal,
     );
 
@@ -196,21 +208,21 @@ function createDailyLog(date) {
  * @param {String} date from preview
  */
 function openFullLog(date) {
-    // editBtn.disabled = true; // do not let users mess outside of log
+    editBtn.disabled = true; // do not let users mess outside of log
     removeAllLogs(); // clear out main
     const dailyLog = createDailyLog(date);
 
     // on cancel, reset inbox (populate with whatever we have)
     dailyLog.addEventListener('cancelLog', () => {
         main.removeChild(dailyLog); // remove full daily log from screen
-        // editBtn.disabled = false; // users can edit inbox again
+        editBtn.disabled = false; // users can edit inbox again
         populateInbox(); // add previews
     });
 
     dailyLog.addEventListener('saveLog', () => {
         main.removeChild(dailyLog); // remove full daily log from screen
-        // editBtn.disabled = false; // users can edit inbox again
-        updateLog(dailyLog.getDate(), [], dailyLog.getJournal()); // save changes
+        editBtn.disabled = false; // users can edit inbox again
+        updateLog(dailyLog.getDate(), dailyLog.getNotes(), dailyLog.getJournal()); // save changes
         populateInbox(); // add previews (with changes)
     });
 }
