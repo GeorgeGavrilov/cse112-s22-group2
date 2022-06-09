@@ -9,7 +9,7 @@ export function doFeedbackVibrations() {
 
 export function doWarningVibrations() {
     console.log("Warning vibration");
-    window.navigator.vibrate([MEDIUM_VIBRATION_MS, LONG_VIBRATION_MS]);
+    window.navigator.vibrate([MEDIUM_VIBRATION_MS, SHORT_VIBRATION_MS, LONG_VIBRATION_MS]);
 }
 
 let activeEditing = false;
