@@ -71,6 +71,7 @@ newLogBtn.addEventListener('click', () => {
         // editBtn.disabled = true; // do not let users mess outside of log
         removeAllLogs(); // clear out main
         const dailyLog = new DailyLog(); // create new daily log
+        dailyLog.setAttribute('id', 'daily-log');
         main.appendChild(dailyLog);
 
         dailyLog.addEventListener('cancelLog', () => {
@@ -189,6 +190,7 @@ function createDailyLogPreview() {
  */
 function createDailyLog(date) {
     const dailyLog = new DailyLog(); // create new daily log
+    dailyLog.setAttribute('id', 'daily-log');
     main.appendChild(dailyLog);
     const logContent = fetchLog(date);
     dailyLog.populateFields(

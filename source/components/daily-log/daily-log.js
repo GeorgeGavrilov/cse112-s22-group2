@@ -108,25 +108,26 @@ class DailyLog extends HTMLElement {
 
         /* When dateBtn gets clicked, we pop up the calendar modal */
         dateBtn.addEventListener('click', () => {
-            $('#date-button').datepicker();
-            $("#search").click(function() {
-                var date = $("#datepicker").datepicker("getDate");
-                
-                const weekday = date.getDay()+1;
-                //console.log(weekday)
-                const year = date.getFullYear();
-                // console.log(year)
-                const month = date.getMonth();
-                //console.log(month)
-                const day = date.getDate()+1;
-                //console.log(day)
-                const event = new Date(Date.UTC(year,month,day,weekday,0,0))
-                const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
-                const dateFormated = event.toLocaleDateString(undefined, options)
-                console.log(dateFormated);
-                const searchResult = localStorage.getItem(dateFormated)
-                console.log(searchResult)
-            })
+            console.log($('#date-button', $('#daily-log')[0].shadowRoot));
+            // const date = $('#date-button', $('#daily-log')[0].shadowRoot).datepicker("getDate");
+            const datePicker = $('#date-button', $('#daily-log')[0].shadowRoot).datepicker();
+            console.log(datePicker);
+            console.log(date);
+     
+            const weekday = date.getDay()+1;
+            //console.log(weekday)
+            const year = date.getFullYear();
+            // console.log(year)
+            const month = date.getMonth();
+            //console.log(month)
+            const day = date.getDate()+1;
+            //console.log(day)
+            const event = new Date(Date.UTC(year,month,day,weekday,0,0))
+            const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
+            const dateFormated = event.toLocaleDateString(undefined, options)
+            console.log(dateFormated);
+            const searchResult = localStorage.getItem(dateFormated)
+            console.log(searchResult) 
         })
 
         /* journal consists of placeholder and input area */
